@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres:18
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: spend
+      POSTGRES_PASSWORD: spendpas
+      POSTGRES_DB: spend_development
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: pg_isready
+      interval: 2s
+      timeout: 5s
+      retries: 30
+volumes:
+  postgres_data:

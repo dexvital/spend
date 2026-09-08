@@ -24,6 +24,22 @@
   </head>
 
   <body>
-    <%= yield %>
+    <heade>
+      <h2><%= t('.hello') %></h2>
+      <h1><%= @page_title %></h1>
+    </heade>
+    <section class="flex">
+      <nav class="p-6">
+        <ul class="text-gray-300 leading-8">
+          <li><a href="/"><%= t('.home') %></a></li>
+          <% if user_signed_in? %>
+            <li><%= button_to t('.logout'), destroy_user_session_path, method: :delete %></li>
+          <% end %>
+        </ul>
+      </nav>
+      <main class="container mx-auto mt-28 px-5 flex">
+        <%= yield %>
+      </main>
+    </section>
   </body>
 </html>
